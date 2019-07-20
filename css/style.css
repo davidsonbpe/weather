@@ -9,6 +9,28 @@ body {
     background-position: center;
     background-attachment: fixed;
 }
+
+.btn-group .buttonn {
+background-color: rgba(76, 175, 80, 0.35); /* Green */
+border: 1px solid rgba(0, 128, 0, 0);
+color: white;
+padding: 0px 0px 0px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 2px;
+cursor: pointer;
+float: left;
+/*border-radius: 100%;*/
+}
+.btn-group .buttonn:not(:last-child) {
+border-right: none;
+}
+.btn-group .buttonn:hover {
+background-color: rgba(62, 142, 65, 0.49);
+}
+
+
 h1 {
 	text-align: center;
 	font-weight: 600;
