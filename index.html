@@ -9,17 +9,18 @@
     <meta name='application-name' content='Weather App' />
     <meta name='apple-mobile-web-app-title' content='Weather App'>
     <meta name="theme-color" content="#4a3062" />
-    <link rel="manifest" href="manifest.json" />
-    <link href='/pwa/images/icons/favicon.png' rel='shortcut icon' />
     <meta http-equiv='X-UA-Compatible' content='IE=edge' />
     <meta name='mobile-web-app-capable' content='yes' />
     <meta name='apple-mobile-web-app-capable' content='yes' />
     <meta name='apple-mobile-web-app-status-bar-style' content='black' />
-    <link rel='icon' sizes='192x192' href='/pwa/images/icons/icon-192x192.png' />
-    <link rel='apple-touch-icon' href='/pwa/images/icons/icon-192x192.png'>
-    <meta name='msapplication-TileImage' content='/pwa/images/icons/icon-144x144.png' />
+    <link href='/pwa/logo-16.png' rel='shortcut icon' />
+    <link rel='icon' sizes='192x192' href='/pwa/logo-192.png' />
+    <link rel='apple-touch-icon' href='/pwa/logo-192.png'>
+    <meta name='msapplication-TileImage' content='/pwa/logo-144.png' />
     <meta name='msapplication-TileColor' content='#2d2138' />
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="manifest" href="/manifest.json" />
+    <script src="/pwacompat.min.js"></script>
 </head>
 
 <body>
@@ -51,55 +52,11 @@
     </footer>
 
 
-    <div class="btn-group"><button class="buttonn" id="btnAddToHomeScreen" tabindex="0" data-trigger="click" class="ui" style="position:fixed;top:20px;right:24px; z-index: 99999;"><img class="fa-chomes" src="pwa/images/chomes.png" height="20"></button></div>
-
-
     <script>
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/sw.js', {
-                    scope: '/'
-                })
-                .then(function(registration) {
-                    console.log('Service Worker Registered');
-                });
-            navigator.serviceWorker.ready.then(function(registration) {
-                console.log('Service Worker Ready');
-            });
+        
+        if (navigator.serviceWorker) {
+            navigator.serviceWorker.register('./sw.js')
         }
-
-        var deferredPrompt;
-
-        window.addEventListener('beforeinstallprompt', function(e) {
-            console.log('beforeinstallprompt Event fired');
-            //e.preventDefault();
-            deferredPrompt = e;
-
-            return false;
-        });
-
-        btnAddToHomeScreen.addEventListener('click', function() {
-            if (deferredPrompt !== undefined) {
-                // The user has had a postive interaction with our app and Chrome
-                // has tried to prompt previously, so let's show the prompt.
-                deferredPrompt.prompt();
-
-                // Follow what the user has done with the prompt.
-                deferredPrompt.userChoice.then(function(choiceResult) {
-
-                    console.log(choiceResult.outcome);
-
-                    if (choiceResult.outcome == 'dismissed') {
-                        console.log('User cancelled home screen install');
-                    } else {
-                        console.log('User added to home screen');
-                    }
-
-                    // We no longer need the prompt.  Clear it up.
-                    deferredPrompt = null;
-                });
-            }
-        });
-
 
         document.addEventListener('contextmenu', event => event.preventDefault()); /*---ti---*/
 
