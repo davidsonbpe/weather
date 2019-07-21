@@ -21,6 +21,17 @@
     <link rel="stylesheet" href="css/style.css" />
     <link rel="manifest" href="manifest.json" />
     <script src="pwacompat.js"></script>
+    
+    <script>
+        
+        if (navigator.serviceWorker) {
+            navigator.serviceWorker.register('./sw.js')
+        }
+
+        document.addEventListener('contextmenu', event => event.preventDefault()); /*---ti---*/
+
+    </script>
+    
 </head>
 
 <body>
@@ -50,17 +61,6 @@
     <footer id="footer">
         <p>Developer by <a href="https://davidsonbpe.blogspot.com/" target="_blank">Davidsonbpe</a>.</p>
     </footer>
-
-
-    <script>
-        
-        if (navigator.serviceWorker) {
-            navigator.serviceWorker.register('./sw.js')
-        }
-
-        document.addEventListener('contextmenu', event => event.preventDefault()); /*---ti---*/
-
-    </script>
 
 
     <script src="js/index.js"></script>
